@@ -1,4 +1,4 @@
-class QualityManager
+class ItemManager
 
   STANDARD_DEGREDATION = 1
   MINIMUM_QUALITY = 0
@@ -6,6 +6,7 @@ class QualityManager
   MAXIMUM_QUALITY = 50
 
   def self.update_standard_item(item)
+    update_sellin(item)
     if expired?(item)
       item.quality -= 2 * STANDARD_DEGREDATION
     else
@@ -15,10 +16,11 @@ class QualityManager
   end
 
   def self.update_backstage_pass(item)
+    update_sellin(item)
     return item.quality = MINIMUM_QUALITY if expired?(item)
-    if item.sell_in < 6 
+    if item.sell_in < 5 
       item.quality += 3 * STANDARD_DEGREDATION
-    elsif item.sell_in < 11
+    elsif item.sell_in < 10
       item.quality += 2 * STANDARD_DEGREDATION
     else
       item.quality += STANDARD_DEGREDATION
@@ -27,6 +29,7 @@ class QualityManager
   end
 
   def self.update_brie(item)
+    update_sellin(item)
     if expired?(item)
       item.quality += 2 * STANDARD_DEGREDATION
     else
@@ -42,10 +45,14 @@ class QualityManager
   end
 
   def self.expired?(item)
-    item.sell_in <= EXPIRED_LIMIT
+    item.sell_in < EXPIRED_LIMIT
   end
 
   def self.above_max_quality?(item)
     item.quality > MAXIMUM_QUALITY
+  end
+
+  def self.update_sellin(item)
+    item.sell_in -= 1
   end
 end
