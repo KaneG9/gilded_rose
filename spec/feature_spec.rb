@@ -1,3 +1,5 @@
+require 'gilded_rose'
+
 describe 'feature' do
   context 'in date' do
     let(:sulfuras) { Item.new("Sulfuras, Hand of Ragnaros", 100, 80) }
