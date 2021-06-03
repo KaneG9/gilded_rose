@@ -12,14 +12,7 @@ class GildedRose
       next if item.name == "Sulfuras, Hand of Ragnaros"
       case item.name
       when "Aged Brie"
-        if item.quality < 50
-          item.quality += 1
-        end
-        if item.sell_in <= 0
-          if item.quality < 50
-            item.quality += 1
-          end
-        end
+        QualityManager.update_brie(item)
       when "Backstage passes to a TAFKAL80ETC concert"
         QualityManager.update_backstage_pass(item)
       else

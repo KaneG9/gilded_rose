@@ -3,6 +3,7 @@ class QualityManager
   STANDARD_DEGREDATION = 1
   MINIMUM_QUALITY = 0
   EXPIRED_LIMIT = 0
+  MAXIMUM_QUALITY = 50
 
   def self.update_standard_item(item)
     if expired?(item)
@@ -22,6 +23,16 @@ class QualityManager
     else
       item.quality += STANDARD_DEGREDATION
     end
+    item.quality = MAXIMUM_QUALITY if above_max_quality?(item)
+  end
+
+  def self.update_brie(item)
+    if expired?(item)
+      item.quality += 2 * STANDARD_DEGREDATION
+    else
+      item.quality += STANDARD_DEGREDATION
+    end
+    item.quality = MAXIMUM_QUALITY if above_max_quality?(item)
   end
 
   private
@@ -32,5 +43,9 @@ class QualityManager
 
   def self.expired?(item)
     item.sell_in <= EXPIRED_LIMIT
+  end
+
+  def self.above_max_quality?(item)
+    item.quality > MAXIMUM_QUALITY
   end
 end
