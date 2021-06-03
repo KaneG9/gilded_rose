@@ -12,7 +12,7 @@ class ItemManager
     else
       item.quality -= STANDARD_DEGREDATION
     end 
-    item.quality = MINIMUM_QUALITY if below_minimum_quality?(item)
+    set_minimum_quality(item)
   end
 
   def self.update_backstage_pass(item)
@@ -25,7 +25,7 @@ class ItemManager
     else
       item.quality += STANDARD_DEGREDATION
     end
-    item.quality = MAXIMUM_QUALITY if above_max_quality?(item)
+    set_maximum_quality(item)
   end
 
   def self.update_brie(item)
@@ -35,16 +35,18 @@ class ItemManager
     else
       item.quality += STANDARD_DEGREDATION
     end
-    item.quality = MAXIMUM_QUALITY if above_max_quality?(item)
+    set_maximum_quality(item)
   end
 
   def self.update_conjured(item)
+    conjured_degredation = 2 * STANDARD_DEGREDATION
     update_sellin(item)
     if expired?(item)
-      item.quality -= 2 * 2 * STANDARD_DEGREDATION
+      item.quality -= 2 * conjured_degredation
     else
-      item.quality -= 2 * STANDARD_DEGREDATION
+      item.quality -= conjured_degredation
     end 
+    set_minimum_quality(item)
   end
 
   private
@@ -63,5 +65,13 @@ class ItemManager
 
   def self.update_sellin(item)
     item.sell_in -= 1
+  end
+
+  def self.set_minimum_quality(item)
+    item.quality = MINIMUM_QUALITY if below_minimum_quality?(item)
+  end
+
+  def self.set_maximum_quality(item)
+    item.quality = MAXIMUM_QUALITY if above_max_quality?(item)
   end
 end

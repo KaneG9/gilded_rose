@@ -97,6 +97,12 @@ describe ItemManager do
       item = Item.new('conjured_item', -1, 20)
       expect { described_class.update_conjured(item) }.to change { item.quality }.by -4
     end
+
+    it 'quality cannot go below 0' do
+      item = Item.new('standard_item', -1, 0)
+      described_class.update_conjured(item)
+      expect(item.quality).to eq 0
+    end
   end
   
 end
