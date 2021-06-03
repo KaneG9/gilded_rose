@@ -50,6 +50,8 @@ class ItemManager
     set_minimum_quality(item)
   end
 
+  private 
+  
   def self.below_minimum_quality?(item)
     item.quality < MINIMUM_QUALITY
   end
