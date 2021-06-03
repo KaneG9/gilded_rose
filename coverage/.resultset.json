@@ -3,6 +3,8 @@
     "coverage": {
       "/Users/kane/Makers/tech_tests/gilded_rose/spec/feature_spec.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -14,7 +16,9 @@
           15,
           15,
           15,
-          15,
+          1,
+          14,
+          null,
           null,
           null,
           null,
@@ -88,7 +92,6 @@
           null,
           1,
           4,
-          null,
           null,
           null,
           null,
@@ -99,7 +102,9 @@
           11,
           11,
           11,
-          11,
+          1,
+          10,
+          null,
           null,
           null,
           null,
@@ -160,11 +165,12 @@
       },
       "/Users/kane/Makers/tech_tests/gilded_rose/lib/gilded_rose.rb": {
         "lines": [
+          null,
+          null,
           1,
           1,
           null,
           1,
-          null,
           1,
           29,
           29,
@@ -173,6 +179,7 @@
           1,
           29,
           153,
+          null,
           128,
           null,
           25,
@@ -185,16 +192,13 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
           null
         ]
       },
       "/Users/kane/Makers/tech_tests/gilded_rose/lib/item.rb": {
         "lines": [
+          null,
+          null,
           1,
           1,
           null,
@@ -212,8 +216,9 @@
       },
       "/Users/kane/Makers/tech_tests/gilded_rose/lib/item_manager.rb": {
         "lines": [
-          1,
           null,
+          null,
+          1,
           1,
           1,
           1,
@@ -232,6 +237,7 @@
           1,
           58,
           58,
+          null,
           47,
           15,
           32,
@@ -264,8 +270,6 @@
           null,
           null,
           1,
-          null,
-          1,
           56,
           null,
           null,
@@ -293,6 +297,8 @@
       },
       "/Users/kane/Makers/tech_tests/gilded_rose/spec/gilded_rose_spec.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -334,16 +340,16 @@
           1,
           null,
           null,
-          null,
           null
         ]
       },
       "/Users/kane/Makers/tech_tests/gilded_rose/spec/item_manager_spec.rb": {
         "lines": [
-          1,
+          null,
           null,
           1,
           null,
+          1,
           1,
           1,
           1,
@@ -444,13 +450,12 @@
           1,
           1,
           1,
-          null,
           null,
           null,
           null
         ]
       }
     },
-    "timestamp": 1622734912
+    "timestamp": 1622734968
   }
 }

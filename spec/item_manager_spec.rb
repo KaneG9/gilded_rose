@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'item_manager'
 
 describe ItemManager do
-
   describe '#update_backstage_pass' do
     it 'reduces sell_in by 1' do
       pass = Item.new('backstage_pass', 20, 20)
-      expect { described_class.update_backstage_pass(pass) }.to change { pass.sell_in }.by -1
+      expect { described_class.update_backstage_pass(pass) }.to change { pass.sell_in }.by(-1)
     end
 
     it 'quality increases by 1 if sell in > 10' do
@@ -39,17 +40,17 @@ describe ItemManager do
   describe '#update_standard_item' do
     it 'reduces sell_in by 1' do
       item = Item.new('standard_item', 20, 20)
-      expect { described_class.update_standard_item(item) }.to change { item.sell_in }.by -1
+      expect { described_class.update_standard_item(item) }.to change { item.sell_in }.by(-1)
     end
 
     it 'quality decreases by 1 if in date' do
       item = Item.new('standard_item', 20, 20)
-      expect { described_class.update_standard_item(item) }.to change { item.quality }.by -1
+      expect { described_class.update_standard_item(item) }.to change { item.quality }.by(-1)
     end
 
     it 'quality decreases by 2 if expired' do
       item = Item.new('standard_item', -1, 20)
-      expect { described_class.update_standard_item(item) }.to change { item.quality }.by -2
+      expect { described_class.update_standard_item(item) }.to change { item.quality }.by(-2)
     end
 
     it 'quality cannot go below 0' do
@@ -62,7 +63,7 @@ describe ItemManager do
   describe '#update_brie' do
     it 'reduces sell_in by 1' do
       brie = Item.new('Aged Brie', 20, 20)
-      expect { described_class.update_brie(brie) }.to change { brie.sell_in }.by -1
+      expect { described_class.update_brie(brie) }.to change { brie.sell_in }.by(-1)
     end
 
     it 'quality increases by 1 if in date' do
@@ -85,17 +86,17 @@ describe ItemManager do
   describe '#update_conjured' do
     it 'reduces sell_in by 1' do
       item = Item.new('conjured item', 20, 20)
-      expect { described_class.update_conjured(item) }.to change { item.sell_in }.by -1
+      expect { described_class.update_conjured(item) }.to change { item.sell_in }.by(-1)
     end
 
     it 'quality decreases by 2 if in date' do
       item = Item.new('conjured_item', 20, 20)
-      expect { described_class.update_conjured(item) }.to change { item.quality }.by -2
+      expect { described_class.update_conjured(item) }.to change { item.quality }.by(-2)
     end
 
     it 'quality decreases by 4 if expired' do
       item = Item.new('conjured_item', -1, 20)
-      expect { described_class.update_conjured(item) }.to change { item.quality }.by -4
+      expect { described_class.update_conjured(item) }.to change { item.quality }.by(-4)
     end
 
     it 'quality cannot go below 0' do
@@ -104,5 +105,4 @@ describe ItemManager do
       expect(item.quality).to eq 0
     end
   end
-  
 end

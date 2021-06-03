@@ -1,5 +1,6 @@
-class ItemManager
+# frozen_string_literal: true
 
+class ItemManager
   STANDARD_DEGREDATION = 1
   MINIMUM_QUALITY = 0
   EXPIRED_LIMIT = 0
@@ -7,49 +8,48 @@ class ItemManager
 
   def self.update_standard_item(item)
     update_sellin(item)
-    if expired?(item)
-      item.quality -= 2 * STANDARD_DEGREDATION
-    else
-      item.quality -= STANDARD_DEGREDATION
-    end 
+    item.quality -= if expired?(item)
+                      2 * STANDARD_DEGREDATION
+                    else
+                      STANDARD_DEGREDATION
+                    end
     set_minimum_quality(item)
   end
 
   def self.update_backstage_pass(item)
     update_sellin(item)
     return item.quality = MINIMUM_QUALITY if expired?(item)
-    if item.sell_in < 5 
-      item.quality += 3 * STANDARD_DEGREDATION
-    elsif item.sell_in < 10
-      item.quality += 2 * STANDARD_DEGREDATION
-    else
-      item.quality += STANDARD_DEGREDATION
-    end
+
+    item.quality += if item.sell_in < 5
+                      3 * STANDARD_DEGREDATION
+                    elsif item.sell_in < 10
+                      2 * STANDARD_DEGREDATION
+                    else
+                      STANDARD_DEGREDATION
+                    end
     set_maximum_quality(item)
   end
 
   def self.update_brie(item)
     update_sellin(item)
-    if expired?(item)
-      item.quality += 2 * STANDARD_DEGREDATION
-    else
-      item.quality += STANDARD_DEGREDATION
-    end
+    item.quality += if expired?(item)
+                      2 * STANDARD_DEGREDATION
+                    else
+                      STANDARD_DEGREDATION
+                    end
     set_maximum_quality(item)
   end
 
   def self.update_conjured(item)
     conjured_degredation = 2 * STANDARD_DEGREDATION
     update_sellin(item)
-    if expired?(item)
-      item.quality -= 2 * conjured_degredation
-    else
-      item.quality -= conjured_degredation
-    end 
+    item.quality -= if expired?(item)
+                      2 * conjured_degredation
+                    else
+                      conjured_degredation
+                    end
     set_minimum_quality(item)
   end
-
-  private
 
   def self.below_minimum_quality?(item)
     item.quality < MINIMUM_QUALITY
