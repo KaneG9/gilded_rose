@@ -1,3 +1,5 @@
+require_relative 'item.rb'
+
 class GildedRose
 
   def initialize(items)
