@@ -8,6 +8,7 @@
 * `ItemManager` contains specific update methods for each type of item and these are called in `update_quality`
 * I then added unit tests for the `ItemManager` and converted my initial tests to feature tests as these tests now covered multiple classes.
 * I then created `update_conjured` in the `ItemManager` via TDD before adding in a case for Conjured items in `update_quality`.
+* I considered splitting up ItemManager into two expired and in date classes, however Im not sure that would help improve the readability of the code.
 
 ## Quickstart
 
