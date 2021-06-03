@@ -34,7 +34,7 @@ describe GildedRose do
     end
 
     it 'calls update_conjured if conjured item' do
-      items = [Item.new("Conjured thing", 10, 50)]
+      items = [Item.new("Conjured", 10, 50)]
       expect(item_manager_double).to receive(:update_conjured)
       GildedRose.new(items, item_manager_double).update_quality()
     end

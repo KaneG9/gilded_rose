@@ -16,7 +16,7 @@ class GildedRose
         @manager.update_brie(item)
       when "Backstage passes to a TAFKAL80ETC concert"
         @manager.update_backstage_pass(item)
-      when "Conjured thing"
+      when "Conjured"
         @manager.update_conjured(item)
       else
         @manager.update_standard_item(item)
