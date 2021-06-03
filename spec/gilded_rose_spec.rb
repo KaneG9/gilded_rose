@@ -7,6 +7,18 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].name).to eq "foo"
     end
+
+    it "quality cannot go below 0" do
+      items = [Item.new("foo", 0, 0)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq 0
+    end
+
+    it "quality cannot exceed 50" do
+      items = [Item.new("Aged Brie", 10, 50)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq 50
+    end
     
     context 'in date' do
       let(:sulfuras) { Item.new("Sulfuras, Hand of Ragnaros", 100, 80) }
@@ -83,7 +95,54 @@ describe GildedRose do
     end
 
     context 'expired' do
-      
+      let(:sulfuras) { Item.new("Sulfuras, Hand of Ragnaros", -1, 80) }
+      let(:standard) { Item.new("standard item", -1, 18) }
+      let(:aged_brie) { Item.new("Aged Brie", -1, 18) }
+      let(:backstage_pass) { Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 18) }
+      let(:subject) { GildedRose.new([sulfuras, 
+                                      standard, 
+                                      aged_brie, 
+                                      backstage_pass]) }
+      context "Sulfuras" do
+        it 'does not change sell in' do
+          expect { subject.update_quality() }.to change { sulfuras.sell_in }.by 0
+        end
+
+        it 'does not change quality'  do
+          expect { subject.update_quality() }.to change { sulfuras.quality }.by 0
+        end
+      end
+
+      context 'standard item' do
+        it 'reduces sell in by 1' do
+          expect { subject.update_quality() }.to change { standard.sell_in }.by -1
+        end
+
+        it 'reduces the quality by 2' do
+          expect { subject.update_quality() }.to change { standard.quality }.by -2
+        end
+      end
+
+      context 'Aged brie' do
+        it 'reduces sell in by 1' do
+          expect { subject.update_quality() }.to change { aged_brie.sell_in }.by -1
+        end
+
+        it 'increases the quality by 1' do
+          expect { subject.update_quality() }.to change { aged_brie.quality }.by 2
+        end
+      end
+
+      context 'backstage pass' do
+        it 'reduces sell in by 1' do
+          expect { subject.update_quality() }.to change { backstage_pass.sell_in }.by -1
+        end
+
+        it 'quality is equal to 0' do
+          subject.update_quality()
+          expect(backstage_pass.quality).to eq 0
+        end
+      end
     end
   end
 
