@@ -38,6 +38,15 @@ class ItemManager
     item.quality = MAXIMUM_QUALITY if above_max_quality?(item)
   end
 
+  def self.update_conjured(item)
+    update_sellin(item)
+    if expired?(item)
+      item.quality -= 2 * 2 * STANDARD_DEGREDATION
+    else
+      item.quality -= 2 * STANDARD_DEGREDATION
+    end 
+  end
+
   private
 
   def self.below_minimum_quality?(item)

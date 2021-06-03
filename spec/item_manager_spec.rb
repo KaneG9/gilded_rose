@@ -81,5 +81,22 @@ describe ItemManager do
       expect(brie.quality).to eq 50
     end
   end
+
+  describe '#update_conjured' do
+    it 'reduces sell_in by 1' do
+      item = Item.new('conjured item', 20, 20)
+      expect { described_class.update_conjured(item) }.to change { item.sell_in }.by -1
+    end
+
+    it 'quality decreases by 2 if in date' do
+      item = Item.new('conjured_item', 20, 20)
+      expect { described_class.update_conjured(item) }.to change { item.quality }.by -2
+    end
+
+    it 'quality decreases by 4 if expired' do
+      item = Item.new('conjured_item', -1, 20)
+      expect { described_class.update_conjured(item) }.to change { item.quality }.by -4
+    end
+  end
   
 end
