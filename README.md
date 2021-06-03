@@ -9,6 +9,16 @@
 * I then added unit tests for the `ItemManager` and converted my initial tests to feature tests as these tests now covered multiple classes.
 * I then created `update_conjured` in the `ItemManager` via TDD before adding in a case for Conjured items in `update_quality`.
 
+## Quickstart
+
+```bash
+> git clone https://github.com/KaneG9/gilded_rose.git
+> cd gilded_rose
+> bundle install
+> rspec #run tests
+> irb -r './lib/gilded_rose.rb' #run program in irb
+```
+
 ## Specification
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
