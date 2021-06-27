@@ -1,5 +1,14 @@
 # Gilded rose tech test
 
+## Quickstart
+
+```bash
+> git clone https://github.com/KaneG9/gilded_rose.git
+> cd gilded_rose
+> bundle install
+> rspec #run tests
+> irb -r './lib/gilded_rose.rb' #run program in irb
+```
 ## Approach
 * I began this test by writing out passing tests for the legacy code as it was functioning in the desired way for the client. This meant I would be able to make sure my code continued to function in this way as I refactored it.
 * Following this I updated the `update_quality` to a case...when syntax to improve readability of the code.
@@ -10,15 +19,11 @@
 * I then created `update_conjured` in the `ItemManager` via TDD before adding in a case for Conjured items in `update_quality`.
 * I considered splitting up ItemManager into an expired and in date class, however Im not sure that would help improve the readability of the code.
 
-## Quickstart
-
-```bash
-> git clone https://github.com/KaneG9/gilded_rose.git
-> cd gilded_rose
-> bundle install
-> rspec #run tests
-> irb -r './lib/gilded_rose.rb' #run program in irb
-```
+## Improvements
+* Upon receiving feedback there are a few improvements I would try to implement if I were to retry this kata.
+* I would try to make item definitions for backstage passes and conjured items look for the strings 'backstage pass' and 'conjured' within the item name rather than a specific string. This would allow the program to be more flexible with different item names for these item types as there could be several names for items contained within each type.
+* Additionally I would create subclasses of the `Item` class with an `update_quality` method specific to each item type. This would improve the reability of the code and help extract logic into separate components which would help improve the maintainability of the program.
+* In order to implement the subclass structure I would need to create an item factory which would convert the original items into their respective subclasses based upon their names.
 
 ## Specification
 
